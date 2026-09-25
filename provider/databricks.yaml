@@ -1,0 +1,82 @@
+credentials_for_provider:
+  databricks_host:
+    type: text-input
+    required: true
+    label:
+      en_US: Databricks host
+      zh_Hans: Databricks Host
+    placeholder:
+      en_US: https://dbc-123456.cloud.databricks.com
+      zh_Hans: https://dbc-123456.cloud.databricks.com
+    help:
+      en_US: The Databricks workspace URL used for REST API calls.
+      zh_Hans: Databricks 工作区 URL，用于 REST API 调用。
+  databricks_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Databricks token
+      zh_Hans: Databricks Token
+    placeholder:
+      en_US: Please input a Databricks PAT or bearer token
+      zh_Hans: 请输入 Databricks PAT 或 bearer token
+    help:
+      en_US: A Databricks token with access to the target SQL warehouse or jobs.
+      zh_Hans: 一个对目标 SQL warehouse 或 Jobs 具备访问权限的 Databricks token。
+  warehouse_id:
+    type: text-input
+    required: false
+    label:
+      en_US: Warehouse ID
+      zh_Hans: Warehouse ID
+    placeholder:
+      en_US: Optional default warehouse for Databricks SQL queries
+      zh_Hans: 可选，作为 Databricks SQL 查询的默认 warehouse
+    help:
+      en_US: Optional but recommended so queries can run without repeating the warehouse ID every time.
+      zh_Hans: 可选，但推荐配置，避免每次查询都重复输入 warehouse ID。
+  catalog:
+    type: text-input
+    required: false
+    label:
+      en_US: Catalog
+      zh_Hans: Catalog
+    placeholder:
+      en_US: Optional default Databricks catalog
+      zh_Hans: 可选，默认 Databricks catalog
+    help:
+      en_US: Optional default catalog used by the SQL query tool.
+      zh_Hans: SQL 查询工具默认使用的 catalog。
+  schema:
+    type: text-input
+    required: false
+    label:
+      en_US: Schema
+      zh_Hans: Schema
+    placeholder:
+      en_US: Optional default Databricks schema
+      zh_Hans: 可选，默认 Databricks schema
+    help:
+      en_US: Optional default schema used by the SQL query tool.
+      zh_Hans: SQL 查询工具默认使用的 schema。
+extra:
+  python:
+    source: provider/databricks.py
+identity:
+  author: yaxuanm
+  name: databricks_sql
+  label:
+    en_US: Databricks SQL
+    zh_Hans: Databricks SQL
+  description:
+    en_US: Execute Databricks SQL queries and trigger Databricks jobs from Dify.
+    zh_Hans: 在 Dify 中执行 Databricks SQL 查询并触发 Databricks Jobs。
+  icon: icon.svg
+  tags:
+    - business
+    - productivity
+    - utilities
+tools:
+  - tools/execute_sql_statement.yaml
+  - tools/run_job_now.yaml
+  - tools/get_job_run_status.yaml

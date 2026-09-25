@@ -1,0 +1,26 @@
+identity:
+  name: get_job_run_status
+  author: openai
+  label:
+    en_US: Get Job Run Status
+    zh_Hans: 获取 Job Run 状态
+description:
+  human:
+    en_US: Get the current lifecycle and result status for a Databricks job run.
+    zh_Hans: 获取 Databricks Job Run 的当前生命周期状态和结果状态。
+  llm: Get the current lifecycle and result status for a Databricks job run.
+parameters:
+  - name: run_id
+    type: number
+    required: true
+    label:
+      en_US: Run ID
+      zh_Hans: Run ID
+    human_description:
+      en_US: The Databricks run ID returned by a prior job execution.
+      zh_Hans: 之前执行 Job 返回的 Databricks run ID。
+    llm_description: The Databricks run ID to inspect.
+    form: llm
+extra:
+  python:
+    source: tools/get_job_run_status.py

@@ -1,0 +1,48 @@
+identity:
+  name: run_job_now
+  author: openai
+  label:
+    en_US: Run Job Now
+    zh_Hans: 立即运行 Job
+description:
+  human:
+    en_US: Trigger a Databricks job run and return the run ID.
+    zh_Hans: 触发 Databricks Job 并返回 run ID。
+  llm: Trigger a Databricks job run and return the Databricks run ID.
+parameters:
+  - name: job_id
+    type: number
+    required: true
+    label:
+      en_US: Job ID
+      zh_Hans: Job ID
+    human_description:
+      en_US: The Databricks job ID to run.
+      zh_Hans: 要运行的 Databricks Job ID。
+    llm_description: The Databricks job ID to trigger.
+    form: llm
+  - name: job_parameters_json
+    type: string
+    required: false
+    label:
+      en_US: Job parameters JSON
+      zh_Hans: Job 参数 JSON
+    human_description:
+      en_US: Optional JSON object of Databricks job parameters.
+      zh_Hans: 可选，Databricks job_parameters 的 JSON 对象。
+    llm_description: Optional JSON object containing Databricks job parameters.
+    form: form
+  - name: idempotency_token
+    type: string
+    required: false
+    label:
+      en_US: Idempotency token
+      zh_Hans: 幂等 Token
+    human_description:
+      en_US: Optional idempotency token for safe retries.
+      zh_Hans: 可选，安全重试时使用的幂等 token。
+    llm_description: Optional idempotency token for safe retries.
+    form: form
+extra:
+  python:
+    source: tools/run_job_now.py

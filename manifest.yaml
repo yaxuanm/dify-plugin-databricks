@@ -1,0 +1,35 @@
+version: 0.0.1
+type: plugin
+author: yaxuanm
+name: databricks_sql
+label:
+  en_US: Databricks SQL
+  zh_Hans: Databricks SQL
+description:
+  en_US: Execute SQL queries and trigger Databricks jobs from Dify workflows.
+  zh_Hans: 在 Dify 工作流中执行 Databricks SQL 查询并触发 Databricks Jobs。
+icon: icon.svg
+tags:
+  - business
+  - productivity
+  - utilities
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/databricks.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2026-04-22T12:00:00Z
+verified: false

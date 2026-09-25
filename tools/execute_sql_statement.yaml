@@ -1,0 +1,167 @@
+identity:
+  name: databricks_sql_query
+  author: openai
+  label:
+    en_US: Databricks Query
+    zh_Hans: Databricks 查询
+  icon: icon.svg
+description:
+  human:
+    en_US: Execute SQL queries on Databricks SQL warehouses with workflow-safe restrictions.
+    zh_Hans: 在 Databricks SQL warehouse 上执行 SQL 查询，并带有工作流安全限制。
+  llm: This tool executes SQL queries on Databricks SQL warehouses. It is intended for querying and light data operations in workflows. Multiple statements and a set of high-risk privilege-management commands are blocked for safety.
+parameters:
+  - name: sql_query
+    type: string
+    required: true
+    label:
+      en_US: SQL Query
+      zh_Hans: SQL 查询
+    placeholder:
+      en_US: SELECT * FROM my_table LIMIT 10
+      zh_Hans: SELECT * FROM my_table LIMIT 10
+    human_description:
+      en_US: SQL query to execute on Databricks. Multiple statements and high-risk privilege-management commands are blocked.
+      zh_Hans: 要在 Databricks 上执行的 SQL 查询。多语句和高风险权限管理命令会被拦截。
+    llm_description: SQL query to execute on Databricks. Multiple statements and high-risk privilege-management commands are blocked for safety.
+    form: llm
+  - name: sql_type
+    type: select
+    required: true
+    default: SELECT
+    label:
+      en_US: SQL Type
+      zh_Hans: SQL 类型
+    human_description:
+      en_US: Type of SQL statement.
+      zh_Hans: SQL 语句类型。
+    llm_description: The type of SQL statement being executed. This helps the workflow understand whether the tool is retrieving rows or applying a data operation.
+    form: form
+    options:
+      - value: SELECT
+        label:
+          en_US: SELECT (Query data)
+          zh_Hans: SELECT（查询数据）
+      - value: INSERT
+        label:
+          en_US: INSERT (Insert data)
+          zh_Hans: INSERT（插入数据）
+      - value: UPDATE
+        label:
+          en_US: UPDATE (Update data)
+          zh_Hans: UPDATE（更新数据）
+      - value: DELETE
+        label:
+          en_US: DELETE (Delete data)
+          zh_Hans: DELETE（删除数据）
+      - value: MERGE
+        label:
+          en_US: MERGE (Merge data)
+          zh_Hans: MERGE（合并数据）
+      - value: CREATE
+        label:
+          en_US: CREATE (Create object)
+          zh_Hans: CREATE（创建对象）
+      - value: DROP
+        label:
+          en_US: DROP (Drop object)
+          zh_Hans: DROP（删除对象）
+      - value: ALTER
+        label:
+          en_US: ALTER (Alter object)
+          zh_Hans: ALTER（修改对象）
+      - value: TRUNCATE
+        label:
+          en_US: TRUNCATE (Truncate table)
+          zh_Hans: TRUNCATE（清空表）
+      - value: SHOW
+        label:
+          en_US: SHOW (Show metadata)
+          zh_Hans: SHOW（查看元数据）
+      - value: DESCRIBE
+        label:
+          en_US: DESCRIBE (Describe object)
+          zh_Hans: DESCRIBE（描述对象）
+  - name: warehouse_id
+    type: string
+    required: false
+    label:
+      en_US: Warehouse ID
+      zh_Hans: Warehouse ID
+    human_description:
+      en_US: Databricks warehouse ID to use. If omitted, the provider default is used.
+      zh_Hans: 要使用的 Databricks warehouse ID。如为空，则使用 provider 默认值。
+    llm_description: Databricks SQL warehouse ID to use for query execution. If not specified, the provider default is used.
+    form: llm
+  - name: catalog
+    type: string
+    required: false
+    label:
+      en_US: Catalog
+      zh_Hans: Catalog
+    human_description:
+      en_US: Optional Databricks catalog to use for the statement.
+      zh_Hans: 可选，执行 SQL 时使用的 Databricks catalog。
+    llm_description: Optional Databricks catalog name.
+    form: llm
+  - name: schema
+    type: string
+    required: false
+    label:
+      en_US: Schema
+      zh_Hans: Schema
+    human_description:
+      en_US: Optional Databricks schema to use for the statement.
+      zh_Hans: 可选，执行 SQL 时使用的 Databricks schema。
+    llm_description: Optional Databricks schema name.
+    form: llm
+  - name: max_rows
+    type: number
+    required: false
+    default: 100
+    min: 1
+    max: 500
+    label:
+      en_US: Max Rows
+      zh_Hans: 最大行数
+    human_description:
+      en_US: Maximum number of result rows returned to the workflow.
+      zh_Hans: 返回给工作流的最大结果行数。
+    llm_description: Maximum number of result rows returned to the workflow.
+    form: llm
+output_schema:
+  type: object
+  properties:
+    success:
+      type: boolean
+      description: Whether the query executed successfully
+    statement_id:
+      type: string
+      description: Databricks statement ID
+    status:
+      type: string
+      description: Statement status
+    columns:
+      type: array
+      description: List of column names in the result
+      items:
+        type: string
+    rows:
+      type: array
+      description: Query result rows
+      items:
+        type: object
+    row_count:
+      type: number
+      description: Number of rows returned
+    executed_sql:
+      type: string
+      description: The SQL query that was executed
+    error:
+      type: string
+      description: Error message if query failed
+  required:
+    - success
+extra:
+  python:
+    source: tools/execute_sql_statement.py
