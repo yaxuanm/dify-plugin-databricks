@@ -1,6 +1,6 @@
 identity:
   name: run_job_now
-  author: openai
+  author: yaxuanm
   label:
     en_US: Run Job Now
     zh_Hans: 立即运行 Job

@@ -1,6 +1,6 @@
 identity:
   name: databricks_sql_query
-  author: openai
+  author: yaxuanm
   label:
     en_US: Databricks Query
     zh_Hans: Databricks 查询

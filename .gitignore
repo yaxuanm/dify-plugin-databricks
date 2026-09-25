@@ -10,3 +10,4 @@ __pycache__/
 
 # Source tests are tracked in Git but excluded from the runtime plugin package.
 tests/
+e2e/
