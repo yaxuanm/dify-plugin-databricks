@@ -1,4 +1,5 @@
 .env
+.git/
 .venv/
 __pycache__/
 **/__pycache__/
@@ -6,3 +7,6 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 *.difypkg
+
+# Source tests are tracked in Git but excluded from the runtime plugin package.
+tests/
