@@ -6,8 +6,8 @@ credentials_for_provider:
       en_US: Databricks host
       zh_Hans: Databricks Host
     placeholder:
-      en_US: https://dbc-123456.cloud.databricks.com
-      zh_Hans: https://dbc-123456.cloud.databricks.com
+      en_US: https://<your-databricks-workspace>
+      zh_Hans: https://<你的 Databricks 工作区地址>
     help:
       en_US: The Databricks workspace URL used for REST API calls.
       zh_Hans: Databricks 工作区 URL，用于 REST API 调用。
