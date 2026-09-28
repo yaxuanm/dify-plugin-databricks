@@ -58,11 +58,12 @@ class DatabricksClient:
         return cleaned.rstrip("/")
 
     def _headers(self) -> Dict[str, str]:
-        return {
-            "Authorization": "Bearer %s" % self.token,
+        headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
         }
+        headers["Authorization"] = "Bearer %s" % self.token
+        return headers
 
     def _build_url(self, path: str) -> str:
         if path.startswith(("http://", "https://")):

@@ -1,0 +1,12 @@
+.env
+.git/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+*.difypkg
+tests/
+e2e/
+pyproject.toml
+uv.lock

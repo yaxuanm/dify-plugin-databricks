@@ -34,6 +34,10 @@ The core Databricks client is covered by unit tests that do not require live Dat
 python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
+## Source and support
+
+- Source repository and issue tracker: [yaxuanm/dify-plugin-databricks](https://github.com/yaxuanm/dify-plugin-databricks)
+
 ## Notes
 
 - This plugin is designed as a workflow tool plugin, not a native knowledge datasource.
